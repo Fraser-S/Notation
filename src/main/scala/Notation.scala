@@ -13,7 +13,7 @@ class Notation {
 
     def convertNumber(number :BigInt, useShortNotation: Boolean): String ={
       def iter(numberString: String, notation :List[String]): String = numberString.length match{
-        case hundred if numberString.length <= 3 => numberString //end of generation
+        case 0 => ""
         case 4 => numberString.take(1) + notation(0) + iter(numberString.tail, notation)
         case 7 => numberString.take(1) + notation(1) + iter(numberString.tail, notation)
         case 10 => numberString.take(1) + notation(2) + iter(numberString.tail, notation)
