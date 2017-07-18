@@ -35,8 +35,7 @@ class Notation {
     }
 
     def display(number :Long): Unit ={
-
-      println("Short Notation:\n" + convertNumber(number, useShort))
-      println("Long Notation:\n" + convertNumber(number, useLong))
+      print("Short Notation:\n" + convertNumber(number, useShort) + "\n")
+      print("Long Notation:\n" + convertNumber(number, useLong) + "\n")
     }
 }
