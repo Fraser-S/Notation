@@ -1,0 +1,2 @@
+# Notation
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6b019eafb71947faa363816f435e3836)](https://www.codacy.com/app/Fraser-S/Notation?utm_source=github.com&utm_medium=referral&utm_content=Fraser-S/Notation&utm_campaign=badger)
