@@ -3,7 +3,7 @@ class Notation {
     val useShort = true
     val useLong = false
 
-    def getNotation(useShort: Boolean):List[String]={
+    def getTerms(useShort: Boolean):List[String]={
       if(useShort) {
         List(" thousand ", " million ", " billion ", " trillion ", " quadrillion ", " quintillion ", " sextillion ")
       } else {
@@ -11,7 +11,7 @@ class Notation {
       }
     }
 
-    def numberNotation(number :BigInt, useShortNotation: Boolean): String ={
+    def convertNumber(number :BigInt, useShortNotation: Boolean): String ={
       def iter(numberString: String, notation :List[String]): String = numberString.length match{
         case hundred if numberString.length <= 3 => numberString //end of generation
         case 4 => numberString.take(1) + notation(0) + iter(numberString.tail, notation)
@@ -23,11 +23,11 @@ class Notation {
         case 22 => numberString.take(1) + notation(6) + iter(numberString.tail, notation)
         case _ =>  numberString.take(1) + iter(numberString.tail, notation)
       }
-      iter(number.toString(), getNotation(useShortNotation))
+      iter(number.toString(), getTerms(useShortNotation))
     }
 
-    def displayNotation(number :Long): Unit ={
-      println("Short Notation:\n" + numberNotation(number, useShort))
-      println("Long Notation:\n" + numberNotation(number, useLong))
+    def display(number :Long): Unit ={
+      println("Short Notation:\n" + convertNumber(number, useShort))
+      println("Long Notation:\n" + convertNumber(number, useLong))
     }
 }
