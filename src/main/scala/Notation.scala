@@ -3,14 +3,6 @@ class Notation {
   val useShort = true
   val useLong = false
 
-  val thousand = 0
-  val million = 1
-  val billion = 2
-  val trillion = 3
-  val quadrillion = 4
-  val quintillion = 5
-  val sextillion = 6
-
     def getTerms(useShort: Boolean):List[String]={
       if(useShort) {
         List(" thousand ", " million ", " billion ", " trillion ", " quadrillion ", " quintillion ", " sextillion ")
@@ -18,6 +10,14 @@ class Notation {
         List(" thousand ", " million ", " milliard ", " billion ", " billiard ", " trillion ", " trilliard ")
       }
     }
+
+  val thousand = 0
+  val million = 1
+  val billion = 2
+  val trillion = 3
+  val quadrillion = 4
+  val quintillion = 5
+  val sextillion = 6
 
     def convertNumber(number :BigInt, useShortNotation: Boolean): String ={
       def iter(numberString: String, notation :List[String]): String = numberString.length.toString match{
