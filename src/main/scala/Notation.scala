@@ -19,20 +19,25 @@ class Notation {
   val quintillion = 5
   val sextillion = 6
 
-    def convertNumber(number :BigInt, useShortNotation: Boolean): String ={
-      def iter(numberString: String, notation :List[String]): String = numberString.length.toString match{
-        case "0" => ""
-        case "4" => numberString.take(1) + notation(thousand) + iter(numberString.tail, notation)
-        case "7" => numberString.take(1) + notation(million) + iter(numberString.tail, notation)
-        case "10" => numberString.take(1) + notation(billion) + iter(numberString.tail, notation)
-        case "13" => numberString.take(1) + notation(trillion) + iter(numberString.tail, notation)
-        case "16" => numberString.take(1) + notation(quadrillion) + iter(numberString.tail, notation)
-        case "19" => numberString.take(1) + notation(quintillion) + iter(numberString.tail, notation)
-        case "22" => numberString.take(1) + notation(sextillion) + iter(numberString.tail, notation)
-        case _ =>  numberString.take(1) + iter(numberString.tail, notation)
-      }
-      iter(number.toString(), getTerms(useShortNotation))
+  def convertNumber(number :BigInt, useShortNotation: Boolean): String ={
+
+    def getCurrentString(numberString: String, notation: List[String], position: Int):String ={
+      numberString.take(1) + notation(position) + iter(numberString.tail, notation)
     }
+
+    def iter(numberString: String, notation :List[String]): String = numberString.length.toString match{
+      case "0" => ""
+      case "4" => getCurrentString(numberString, notation, thousand)
+      case "7" => getCurrentString(numberString, notation, million)
+      case "10" => getCurrentString(numberString, notation, billion)
+      case "13" => getCurrentString(numberString, notation, trillion)
+      case "16" => getCurrentString(numberString, notation, quadrillion)
+      case "19" => getCurrentString(numberString, notation, quintillion)
+      case "22" => getCurrentString(numberString, notation, sextillion)
+      case _ =>  numberString.take(1) + iter(numberString.tail, notation)
+    }
+    iter(number.toString(), getTerms(useShortNotation))
+  }
 
     def display(number :Long): Unit ={
       print("Short Notation:\n" + convertNumber(number, useShort) + "\n")
